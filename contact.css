@@ -1,0 +1,24 @@
+input {
+  width: 250px;
+  padding: 5px;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+}
+
+.form-wrapper {
+  color: #666;
+}
+
+button {
+  border:none;
+  background-color:rgb(65, 122, 168);
+  color:white;
+  padding:5px 40px;
+  margin-top: 10px;
+  border-radius: 3px;
+}

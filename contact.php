@@ -4,9 +4,9 @@ require_once 'libs/mailvars.php';
 
 //postデータの管理
 $name= isset($_POST['name']) ? $_POST['name'] : NULL;
-$name= isset($_POST['email']) ? $_POST['email'] : NULL;
-$name= isset($_POST['subject']) ? $_POST['subject'] : NULL;
-$name= isset($_POST['body']) ? $_POST['body'] : NULL;
+$email= isset($_POST['email']) ? $_POST['email'] : NULL;
+$subject= isset($_POST['subject']) ? $_POST['subject'] : NULL;
+$body= isset($_POST['body']) ? $_POST['body'] : NULL;
 
 //送信ボタンが押されている場合
 
@@ -79,6 +79,7 @@ if(isset($_POST['submitted'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="contact.css">
   <title>お問い合わせ</title>
 </head>
 <body>
@@ -101,17 +102,23 @@ if(isset($_POST['submitted'])) {
 
       <form action="contact.php" method="post">
 
-        <label for="contact_name">お名前：</label>
+        <label for="contact_name">お名前：</label><br>
           <input type="text" id="contact_name" name="name" required value="<?php echo e($name)?>">
+          <br>
 
-        <label for="contact_email">メールアドレス：</label>
+        <label for="contact_email">メールアドレス：</label><br>
           <input type="text" id="contact_email" name="email" required value="<?php echo e($email)?>">
+          <br>
 
-          <label for="contact_email">件名：</label>
-          <input type="text" id="contact_subject" name="email" required value="<?php echo e($subject)?>">
+          <label for="contact_email">件名：</label><br>
+          <input type="text" id="contact_subject" name="subject" required value="<?php echo e($subject)?>">
+          <br>
         
-          <label for="contact_body">お問い合わせ内容：</label>
-          <textarea name="text" id="contact_body" cols="30" rows="10" required><?php echo e($body)?></textarea>
+          <label for="contact_body">お問い合わせ内容：</label><br>
+          <textarea name="body" id="contact_body" cols="30" rows="10" required><?php echo e($body)?></textarea>
+          <br>
+
+          <button name="submitted" type="submit">送信</button>
 
       </form>
     </div>

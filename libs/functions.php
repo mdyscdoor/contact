@@ -1,4 +1,6 @@
 <?php
+
+//エスケープ
 function e($txt) {
   if(is_array($txt)) {
     return array_map('e', $txt);
@@ -9,9 +11,12 @@ function e($txt) {
 
 
 function checkInput($txt) {
+
   if(is_array($txt)) {
-    return array_map('checkInput', $var);
+    return array_map('checkInput', $txt);
   } else {
+
+    //nullバイト攻撃
     if(preg_match('/\0/', $txt)) {
       die('不正な入力です。');
     }
