@@ -97,7 +97,7 @@ if(isset($_POST['submitted'])) {
     $body = '';
 
     //二重送信を防止する
-    $params = '?result' .$result;
+    $params = '?result=' .$result;
     $url = (empty($_SERVER['HTTPS']) ?'http://' : 'https://'). $_SERVER['HTTP_HOST']. $_SERVER['SCRIPT_NAME'];
 
     header('Location: '. $url . $params);
