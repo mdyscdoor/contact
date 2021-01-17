@@ -1,10 +1,15 @@
 <?php
 session_start();
-header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 require_once 'libs/functions.php';
 require_once 'libs/mailvars.php';
 
+
+
+
+
+//クリックジャッキング
+header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 //csrf対策
 if (empty($_SESSION['token'])) {
@@ -15,7 +20,8 @@ if (empty($_SESSION['token'])) {
 }
 
 
-//postデータの管理
+
+//postデータの再表示管理
 $name= isset($_POST['name']) ? $_POST['name'] : NULL;
 $email= isset($_POST['email']) ? $_POST['email'] : NULL;
 $subject= isset($_POST['subject']) ? $_POST['subject'] : NULL;
@@ -116,7 +122,7 @@ if(isset($_POST['submitted'])) {
     
     <div class="form-wrapper">
 
-      <?php if (isset($_GET['result']) && $result): ?>
+      <?php if (isset($_GET['result']) && $_GET['result']): ?>
         <h3>送信が完了しました。</h3>
 
       <?php elseif (isset($result) && !$result): ?>
