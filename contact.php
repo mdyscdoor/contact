@@ -65,8 +65,8 @@ if(isset($_POST['submitted'])) {
 
   if(isset($_POST['body'])) {
     $body = filter_var($_POST['body'], FILTER_SANITIZE_STRING);
-    if(mb_strlen($body) > 512) {
-      $body = mb_substr($body, 0, 512);
+    if(mb_strlen($body) > 1024) {
+      $body = mb_substr($body, 0, 1024);
     }
   }
 
