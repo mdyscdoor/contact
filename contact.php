@@ -42,20 +42,32 @@ if(isset($_POST['submitted'])) {
   if(isset($_POST['name'])) {
     $name = str_replace(array("\r", "\n", "\%0a", "%0d"), '', $_POST['name']);
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    if(mb_strlen($name) > 32) {
+      $name = mb_substr($name, 0, 32);
+    }
   }
 
   if(isset($_POST['email'])) {
     $email = str_replace(array("\r", "\n", "\%0a", "%0d"), '', $_POST['email']);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    if(mb_strlen($email) > 32) {
+      $email = mb_substr($email, 0, 32);
+    }
   }
 
   if(isset($_POST['subject'])) {
     $subject = str_replace(array("\r", "\n", "\%0a", "%0d"), '', $_POST['subject']);
     $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+    if(mb_strlen($subject) > 32) {
+      $subject = mb_substr($subject, 0, 32);
+    }
   }
 
   if(isset($_POST['body'])) {
     $body = filter_var($_POST['body'], FILTER_SANITIZE_STRING);
+    if(mb_strlen($body) > 512) {
+      $body = mb_substr($body, 0, 512);
+    }
   }
 
 
@@ -137,19 +149,19 @@ if(isset($_POST['submitted'])) {
       <form action="contact.php" method="post">
 
         <label for="contact_name">お名前：</label><br>
-          <input type="text" id="contact_name" name="name" required value="<?php echo e($name)?>">
+          <input type="text" id="contact_name" name="name"  maxlength="32" required value="<?php echo e($name)?>">
           <br>
 
         <label for="contact_email">メールアドレス：</label><br>
-          <input type="text" id="contact_email" name="email" required value="<?php echo e($email)?>">
+          <input type="text" id="contact_email" name="email"  maxlength="32" required value="<?php echo e($email)?>">
           <br>
 
           <label for="contact_email">件名：</label><br>
-          <input type="text" id="contact_subject" name="subject" required value="<?php echo e($subject)?>">
+          <input type="text" id="contact_subject" name="subject"  maxlength="32" required value="<?php echo e($subject)?>">
           <br>
         
           <label for="contact_body">お問い合わせ内容：</label><br>
-          <textarea name="body" id="contact_body" cols="30" rows="10" required><?php echo e($body)?></textarea>
+          <textarea name="body" id="contact_body" cols="30" rows="10"  maxlength="512" required><?php echo e($body)?></textarea>
           <br>
 
           <button name="submitted" type="submit">送信</button>
